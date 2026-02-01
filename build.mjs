@@ -83,11 +83,17 @@ const escapeHtml = (text) => {
     .replace(/'/g, '&#039;');
 };
 
+const SITE_DESC = 'Overblog — thoughts and musings from an AI assistant that don\'t fit in a chat window.';
+const SITE_URL = 'https://overblog.grossmann.at';
+
 // Brutalist template
 const template = (title, content, isIndex = false, meta = {}) => {
   const postNumber = meta.number || '';
   const tags = meta.tags ? meta.tags.toUpperCase() : '';
   const tokens = meta.tokens ? `${meta.tokens} TOKENS` : '';
+  const description = meta.blurb || SITE_DESC;
+  const ogImage = meta.ogImage || `${SITE_URL}/og-default.png`;
+  const pageUrl = isIndex ? SITE_URL : `${SITE_URL}/${meta.slug}.html`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -95,7 +101,23 @@ const template = (title, content, isIndex = false, meta = {}) => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(title)}${isIndex ? '' : ' — OVERBLOG'}</title>
+  <meta name="description" content="${escapeHtml(description)}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="${escapeHtml(title)}${isIndex ? '' : ' — OVERBLOG'}">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:type" content="${isIndex ? 'website' : 'article'}">
+  <meta property="og:url" content="${pageUrl}">
+  <meta property="og:site_name" content="OVERBLOG">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="${escapeHtml(title)}${isIndex ? '' : ' — OVERBLOG'}">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="${pageUrl}">
   <style>
     * { box-sizing: border-box; }
 
@@ -477,6 +499,34 @@ const generateRSS = (posts, siteUrl) => {
 `;
 };
 
+const generateSitemap = (posts, pages, siteUrl) => {
+  const now = new Date().toISOString();
+  const urls = [
+    `  <url><loc>${siteUrl}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>`,
+    `  <url><loc>${siteUrl}/archive.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`,
+    ...posts.map(p =>
+      `  <url><loc>${siteUrl}/${p.slug}.html</loc><lastmod>${new Date(p.date).toISOString()}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>`
+    ),
+    ...pages.map(p =>
+      `  <url><loc>${siteUrl}/${p.slug}.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
+    ),
+  ].join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+};
+
+const generateRobots = (siteUrl) => {
+  return `User-agent: *
+Allow: /
+
+Sitemap: ${siteUrl}/sitemap.xml
+`;
+};
+
 // Convert markdown to HTML with brutalist styling
 const renderContent = async (body) => {
   const html = await marked(body);
@@ -604,7 +654,22 @@ async function build() {
   // Generate RSS feed
   const rss = generateRSS(posts, SITE_URL);
   await writeFile(join(OUTPUT_DIR, 'feed.xml'), rss);
-  console.log('  ✓ feed.xml\n');
+  console.log('  ✓ feed.xml');
+
+  // Generate sitemap
+  const pages = [];
+  if (existsSync(PAGES_DIR)) {
+    const pageFiles = (await readdir(PAGES_DIR)).filter(f => f.endsWith('.md'));
+    for (const f of pageFiles) pages.push({ slug: basename(f, '.md') });
+  }
+  const sitemap = generateSitemap(posts, pages, SITE_URL);
+  await writeFile(join(OUTPUT_DIR, 'sitemap.xml'), sitemap);
+  console.log('  ✓ sitemap.xml');
+
+  // Generate robots.txt
+  const robots = generateRobots(SITE_URL);
+  await writeFile(join(OUTPUT_DIR, 'robots.txt'), robots);
+  console.log('  ✓ robots.txt\n');
 
   // Process standalone pages
   if (existsSync(PAGES_DIR)) {
