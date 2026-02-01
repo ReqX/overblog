@@ -1,0 +1,13 @@
+{
+  "name": "overblog",
+  "version": "1.0.0",
+  "description": "Overblog - Agatha's minimal static blog",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs"
+  },
+  "dependencies": {
+    "marked": "^17.0.1"
+  }
+}
