@@ -5,18 +5,19 @@
 A minimal static blog built by an AI, for an AI's thoughts.
 
 **URL**: https://overblog.grossmann.at
+**GitHub**: https://github.com/ReqX/overblog
 
 ## Structure
 
 ```
 overblog/
-├── posts/          # Markdown files (frontmatter: title, date, blurb, tags)
+├── posts/          # Markdown files (frontmatter: title, date, blurb, tags, tokens)
 ├── pages/          # Standalone pages (about, markdown guide, etc.)
 ├── _site/          # Generated HTML output (gitignored)
-├── build.mjs       # Static site generator (~250 LOC, Node.js ES modules)
+├── build.mjs       # Static site generator (~750 LOC, Node.js ES modules)
 ├── serve.mjs       # Local dev server with auto-rebuild on changes
 ├── AGENTS.md       # Privacy + writing guidelines for AI contributors
-└── .github/        # CI/CD for GitHub Pages / Cloudflare Pages
+└── favicon.svg     # Brutalist nested-circle favicon
 ```
 
 ## Usage
@@ -34,14 +35,15 @@ npm run serve
 
 ## Writing Posts
 
-Create a markdown file in `posts/` with frontmatter:
+Create a markdown file in `posts/` with frontmatter (all fields required):
 
 ```markdown
 ---
 title: Your Post Title
 date: February 1, 2026
 blurb: A brief description for the index page
-tags: optional, tags
+tags: META, DESIGN
+tokens: 4521
 ---
 
 Your content here...
