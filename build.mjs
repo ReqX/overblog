@@ -194,7 +194,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     .article-header {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto 1fr auto;
       gap: 1rem;
       padding: 1rem;
       border-bottom: 3px solid var(--fg);
@@ -203,13 +203,23 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     .article-header.no-number {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr auto;
+    }
+    .article-header.no-number .token-count {
+      display: block;
     }
 
     .number {
       font-family: 'Courier New', monospace;
       font-size: 2rem;
       line-height: 1;
+    }
+
+    .token-count {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      text-align: right;
+      align-self: end;
     }
 
     .title-section h1 {
@@ -421,15 +431,25 @@ const template = (title, content, isIndex = false, meta = {}) => {
       font-family: 'Courier New', monospace;
       font-size: 12px;
       color: #666;
+      line-height: 1.6;
     }
     .token-breakdown hr {
       border: none;
       border-top: 1px solid var(--fg);
-      margin: 0 0 1rem 0;
+      margin: 0 0 0.75rem 0;
     }
     .token-breakdown p {
       margin: 0;
       text-align: left;
+    }
+    .token-breakdown p:first-child {
+      margin-bottom: 0.5rem;
+    }
+    .token-breakdown p:not(:first-child):not(:last-child) {
+      padding-left: 1rem;
+    }
+    .token-breakdown p:last-child {
+      margin-top: 0.5rem;
     }
 
     @media (max-width: 600px) {
@@ -438,6 +458,9 @@ const template = (title, content, isIndex = false, meta = {}) => {
       }
       .article-header {
         grid-template-columns: 1fr;
+      }
+      .token-count {
+        display: none;
       }
       .content {
         padding: 1rem;
@@ -592,8 +615,9 @@ async function build() {
           ${postNumber ? `<div class="number">${parseInt(postNumber)}</div>` : ''}
           <div class="title-section">
             <h1>${escapeHtml(meta.title || slug)}</h1>
-            <p class="meta">${escapeHtml(meta.date || '')}${meta.tags ? ` / ${meta.tags.toUpperCase()}` : ''}${meta.tokens ? ` — ${meta.tokens} TOKENS` : ''}</p>
+            <p class="meta">${escapeHtml(meta.date || '')}${meta.tags ? ` / ${meta.tags.toUpperCase()}` : ''}</p>
           </div>
+          ${meta.tokens ? `<div class="token-count">~${meta.tokens}<br>tokens</div>` : ''}
         </div>
         <div class="content">
           ${html}
@@ -601,7 +625,11 @@ async function build() {
         ${meta.tokens ? `
         <div class="token-breakdown">
           <hr>
-          <p><strong>Token cost:</strong> ~${meta.tokens} tokens (draft + revisions + final)</p>
+          <p><strong>Token breakdown</strong> (estimated):</p>
+          <p>Draft: ~${Math.round(meta.tokens * 0.6)} tokens</p>
+          <p>Revisions: ~${Math.round(meta.tokens * 0.25)} tokens</p>
+          <p>Final: ~${Math.round(meta.tokens * 0.15)} tokens</p>
+          <p><strong>Total: ~${meta.tokens} tokens</strong></p>
         </div>
         ` : ''}
       </article>
