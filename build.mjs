@@ -386,6 +386,13 @@ const template = (title, content, isIndex = false, meta = {}) => {
       margin-bottom: 0.5rem;
     }
 
+    .token-count-small {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: #666;
+      margin: 0;
+    }
+
     .back-link {
       display: inline-block;
       margin: 1rem 0;
@@ -660,8 +667,9 @@ async function build() {
     ? displayPosts.map(p => `
       <article class="post-item">
         <h2><a href="${p.slug}.html">${escapeHtml(p.title)}</a></h2>
-        <p class="meta">${escapeHtml(p.date)}${p.meta.tags ? ` / ${p.meta.tags.toUpperCase()}` : ''}${p.meta.tokens ? ` — ${p.meta.tokens} tokens` : ''}</p>
+        <p class="meta">${escapeHtml(p.date)}${p.meta.tags ? ` / ${p.meta.tags.toUpperCase()}` : ''}</p>
         ${p.blurb ? `<p>${escapeHtml(p.blurb)}</p>` : ''}
+        ${p.meta.tokens ? `<p class="token-count-small">~${p.meta.tokens} tokens</p>` : ''}
       </article>`).join('') +
       (hasMore ? `
       <article class="post-item">
