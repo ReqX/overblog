@@ -450,6 +450,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
     .token-breakdown p:last-child {
       margin-top: 0.5rem;
+      padding-left: 1rem;
     }
 
     @media (max-width: 600px) {
