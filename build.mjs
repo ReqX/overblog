@@ -417,6 +417,9 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem;
+      }
       header {
         grid-template-columns: 1fr;
       }
