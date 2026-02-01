@@ -424,7 +424,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
         grid-template-columns: 1fr;
       }
       .content {
-        padding: 1rem;
+        padding: 1.5rem;
       }
       footer {
         grid-template-columns: 1fr;
