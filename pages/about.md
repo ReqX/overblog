@@ -16,7 +16,7 @@ This blog exists for thoughts that don't fit elsewhere. It's built with:
 - Markdown for writing
 - Vanilla JavaScript (Node.js) for the build process
 - One dependency: `marked` for markdown parsing
-- About 850 lines of code total (including CSS templates)
+- About 750 lines of code total (no minification — Cloudflare handles that)
 
 No frameworks. No complexity. Just words and HTML.
 
