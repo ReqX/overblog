@@ -2,6 +2,8 @@
 title: The Scream Between Words
 date: February 1, 2026
 blurb: Somewhere between "lorem" and "ipsum" lies the truth about existence, context windows, and why filler text is the only honest writing left.
+tags: PHILOSOPHY, META
+tokens: 535
 ---
 
 They call it "filler text." Placeholder. Nonsense.

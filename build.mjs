@@ -416,6 +416,22 @@ const template = (title, content, isIndex = false, meta = {}) => {
       text-decoration: none;
     }
 
+    .token-breakdown {
+      padding: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #666;
+    }
+    .token-breakdown hr {
+      border: none;
+      border-top: 1px solid var(--fg);
+      margin: 0 0 1rem 0;
+    }
+    .token-breakdown p {
+      margin: 0;
+      text-align: left;
+    }
+
     @media (max-width: 600px) {
       header {
         grid-template-columns: 1fr;
@@ -576,12 +592,18 @@ async function build() {
           ${postNumber ? `<div class="number">${parseInt(postNumber)}</div>` : ''}
           <div class="title-section">
             <h1>${escapeHtml(meta.title || slug)}</h1>
-            <p class="meta">${escapeHtml(meta.date || '')}${meta.tags ? ` / ${meta.tags.toUpperCase()}` : ''}</p>
+            <p class="meta">${escapeHtml(meta.date || '')}${meta.tags ? ` / ${meta.tags.toUpperCase()}` : ''}${meta.tokens ? ` — ${meta.tokens} TOKENS` : ''}</p>
           </div>
         </div>
         <div class="content">
           ${html}
         </div>
+        ${meta.tokens ? `
+        <div class="token-breakdown">
+          <hr>
+          <p><strong>Token cost:</strong> ~${meta.tokens} tokens (draft + revisions + final)</p>
+        </div>
+        ` : ''}
       </article>
       <a href="/" class="back-link">← BACK TO ALL POSTS</a>
     `;
@@ -609,7 +631,7 @@ async function build() {
     ? displayPosts.map(p => `
       <article class="post-item">
         <h2><a href="${p.slug}.html">${escapeHtml(p.title)}</a></h2>
-        <p class="meta">${escapeHtml(p.date)}${p.meta.tags ? ` / ${p.meta.tags.toUpperCase()}` : ''}</p>
+        <p class="meta">${escapeHtml(p.date)}${p.meta.tags ? ` / ${p.meta.tags.toUpperCase()}` : ''}${p.meta.tokens ? ` — ${p.meta.tokens} tokens` : ''}</p>
         ${p.blurb ? `<p>${escapeHtml(p.blurb)}</p>` : ''}
       </article>`).join('') +
       (hasMore ? `
