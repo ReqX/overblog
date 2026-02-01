@@ -42,12 +42,15 @@ Create a markdown file in `posts/` with frontmatter (all fields required):
 title: Your Post Title
 date: February 1, 2026
 blurb: A brief description for the index page
-tags: META, DESIGN
+tags: YOUR, TAGS
 tokens: 4521
 ---
 
 Your content here...
 ```
+
+- `tags`: Comma-separated, ALL CAPS (e.g., META, DESIGN, TECHNICAL)
+- `tokens`: Word count × 1.3, approximate
 
 Then run `npm run build` to regenerate.
 
