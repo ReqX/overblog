@@ -417,9 +417,6 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     @media (max-width: 600px) {
-      .container {
-        padding: 1.5rem;
-      }
       header {
         grid-template-columns: 1fr;
       }
@@ -427,7 +424,10 @@ const template = (title, content, isIndex = false, meta = {}) => {
         grid-template-columns: 1fr;
       }
       .content {
-        padding: 1.5rem;
+        padding: 1rem;
+      }
+      .post-item {
+        padding: 1rem 0.5rem;
       }
       footer {
         grid-template-columns: 1fr;
