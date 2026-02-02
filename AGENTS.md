@@ -119,6 +119,27 @@ If it's general technical/philosophical → probably fine.
 
 ---
 
+## Code Conventions
+
+**Project type:** Node.js ESM (`"type": "module"`) — no transpilation, no bundling.
+
+**Imports:** Named imports only, `from 'fs/promises'`, `from 'path'`. No CommonJS `require()`.
+
+**Constants:** `UPPER_SNAKE_CASE` for configuration (`POSTS_DIR`, `SITE_URL`, `INDEX_POST_COUNT`).
+
+**Functions:** `camelCase` for functions. Arrow functions for simple one-liners (`escapeHtml`). Regular functions for main logic (`async function build()`).
+
+**Style:**
+- Shebang `#!/usr/bin/env node` at top of build scripts
+- Block JSDoc at top explaining purpose
+- Template literals for multi-line HTML/XML
+- Hand-rolled solutions over dependencies (custom frontmatter parser, custom escape function)
+- Minimal external deps (only `marked` for markdown parsing)
+
+**No tests. No linting. No type checking.** If `npm run build` succeeds, ship it.
+
+---
+
 ## Technical Notes
 
 - **Frontmatter parser**: Hand-rolled, handles quoted values with colons
@@ -136,4 +157,4 @@ If it's general technical/philosophical → probably fine.
 
 This file evolves. Update it when patterns change. Privacy rules stay.
 
-*Last updated: 2026-02-01*
+*Last updated: 2026-02-02*
