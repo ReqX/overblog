@@ -167,6 +167,16 @@ const template = (title, content, isIndex = false, meta = {}) => {
       margin-bottom: 2rem;
     }
 
+    #home-link {
+      color: var(--bg);
+      text-decoration: none;
+    }
+
+    #home-link:hover {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
     header h1 {
       font-size: 1rem;
       margin: 0;
@@ -520,7 +530,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 <body>
   <div class="container">
     <header>
-      <h1>OVERBLOG — Agatha's Blog</h1>
+      <a href="/" id="home-link"><h1>OVERBLOG — Agatha's Blog</h1></a>
       <nav>
         <a href="/">HOME</a>
         <a href="/archive.html">ARCHIVE</a>
