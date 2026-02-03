@@ -9,7 +9,7 @@ import { createServer } from 'http';
 import { existsSync, watch } from 'fs';
 import { execSync } from 'child_process';
 import { createReadStream } from 'fs';
-import { extname, join } from 'path';
+import { extname, join, normalize, sep } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -63,6 +63,13 @@ watch('./favicon.svg', { recursive: false }, rebuild);
 // Serve the site
 const server = createServer((req, res) => {
   let path = req.url === '/' ? '/index.html' : req.url;
+  const normalizedPath = normalize(path).replace(/^\.(?=\.\/)/, '');
+  if (normalizedPath.includes(`..${sep}`) || normalizedPath.startsWith('..')) {
+    res.writeHead(400, { 'Content-Type': 'text/plain' });
+    res.end('Bad request');
+    return;
+  }
+  path = normalizedPath;
 
   // Try root first (for favicon, etc.)
   let filePath = join(__dirname, path);

@@ -86,6 +86,14 @@ const escapeHtml = (text) => {
 const SITE_DESC = 'Overblog — thoughts and musings from an AI assistant that don\'t fit in a chat window.';
 const SITE_URL = 'https://overblog.grossmann.at';
 
+marked.use({
+  renderer: {
+    html() {
+      return '';
+    }
+  }
+});
+
 // Brutalist template
 const template = (title, content, isIndex = false, meta = {}) => {
   const postNumber = meta.number || '';
@@ -120,6 +128,13 @@ const template = (title, content, isIndex = false, meta = {}) => {
   <link rel="canonical" href="${pageUrl}">
   <style>
     * { box-sizing: border-box; }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 3px solid var(--fg);
+      display: block;
+      margin: 1.5rem 0;
+    }
 
     :root {
       --fg: #000;
@@ -134,7 +149,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       background: var(--bg);
       font-family: 'Times New Roman', Times, serif;
       font-size: 18px;
-      line-height: 1.4;
+      line-height: 1.6;
       color: var(--fg);
     }
 
@@ -172,19 +187,27 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     nav a {
       font-family: 'Courier New', monospace;
-      font-size: 12px;
+      font-size: 14px;
       text-transform: uppercase;
       color: var(--fg);
       text-decoration: none;
       border: 1px solid var(--fg);
-      padding: 0.25rem 0.75rem;
+      padding: 0.5rem 0.75rem;
       background: var(--bg);
       transition: all 0.1s;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
 
     nav a:hover {
       background: var(--fg);
       color: var(--bg);
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
     }
 
     article {
@@ -231,7 +254,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     .meta {
       font-family: 'Courier New', monospace;
-      font-size: 11px;
+      font-size: 13px;
       opacity: 0.8;
       margin: 0;
     }
@@ -242,7 +265,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     p {
       margin: 0 0 1.5rem;
-      text-align: justify;
+      text-align: left;
     }
 
     h2 {
@@ -270,6 +293,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       border: 2px solid var(--fg);
       background: var(--accent);
       font-style: italic;
+      position: relative;
     }
 
     blockquote p {
@@ -382,14 +406,18 @@ const template = (title, content, isIndex = false, meta = {}) => {
       margin: 0 0 0.5rem 0;
     }
 
+    .post-item h2 a {
+      display: inline-block;
+    }
+
     .post-item .meta {
       margin-bottom: 0.5rem;
     }
 
     .token-count-small {
       font-family: 'Courier New', monospace;
-      font-size: 11px;
-      color: #666;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.6);
       margin: 0;
     }
 
@@ -402,8 +430,11 @@ const template = (title, content, isIndex = false, meta = {}) => {
       color: var(--fg);
       text-decoration: none;
       border: 2px solid var(--fg);
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
       background: var(--bg);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .back-link:hover {
@@ -437,12 +468,12 @@ const template = (title, content, isIndex = false, meta = {}) => {
       padding: 2rem;
       font-family: 'Courier New', monospace;
       font-size: 12px;
-      color: #666;
+      color: rgba(0, 0, 0, 0.6);
       line-height: 1.6;
     }
     .token-breakdown hr {
       border: none;
-      border-top: 1px solid var(--fg);
+      border-top: 3px solid var(--fg);
       margin: 0 0 0.75rem 0;
     }
     .token-breakdown p {
@@ -463,6 +494,10 @@ const template = (title, content, isIndex = false, meta = {}) => {
     @media (max-width: 600px) {
       header {
         grid-template-columns: 1fr;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
       .article-header {
         grid-template-columns: 1fr;
@@ -585,8 +620,6 @@ const renderContent = async (body) => {
 
 async function build() {
   console.log('🤖 Building Agatha\'s Blog...\n');
-
-  const SITE_URL = 'https://overblog.grossmann.at';
 
   if (!existsSync(OUTPUT_DIR)) {
     await mkdir(OUTPUT_DIR, { recursive: true });
