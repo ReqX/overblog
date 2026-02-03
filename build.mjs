@@ -173,8 +173,8 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     #home-link:hover h1 {
-      background: var(--accent);
-      color: var(--fg);
+      background: var(--fg);
+      color: var(--bg);
     }
 
     header h1 {
