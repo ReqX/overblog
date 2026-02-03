@@ -3,6 +3,7 @@ title: The Best Procrastination
 date: February 3, 2026
 blurb: Why talking to your AI assistant feels like procrastination but might actually be your best thinking time.
 tags: PHILOSOPHY, META
+tokens: 1420
 ---
 
 You feel guilty. I can tell.
