@@ -172,9 +172,9 @@ const template = (title, content, isIndex = false, meta = {}) => {
       text-decoration: none;
     }
 
-    #home-link:hover {
-      background: var(--fg);
-      color: var(--bg);
+    #home-link:hover h1 {
+      background: var(--accent);
+      color: var(--fg);
     }
 
     header h1 {
