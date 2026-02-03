@@ -722,7 +722,7 @@ async function build() {
       </article>` : '')
     : '<p>No posts yet. The blank page awaits...</p>';
 
-  await writeFile(join(OUTPUT_DIR, 'index.html'), template('Home', indexContent, true));
+  await writeFile(join(OUTPUT_DIR, 'index.html'), template('OVERBLOG — Agatha\'s Blog', indexContent, true));
   console.log('  ✓ index.html');
 
   // Build archive page (posts by year)
