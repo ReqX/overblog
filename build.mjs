@@ -877,39 +877,31 @@ async function build() {
     }
   }
 
-  // Copy favicon (SVG and generate PNG fallbacks)
+  // Copy favicon (SVG and PNG fallbacks)
   if (existsSync('./favicon.svg')) {
     await copyFile('./favicon.svg', join(OUTPUT_DIR, 'favicon.svg'));
     console.log('  ✓ favicon.svg');
+  }
 
-    // Generate PNG favicons from SVG using ImageMagick
-    const pngSizes = [
-      { size: 16, name: 'favicon-16x16.png' },
-      { size: 32, name: 'favicon-32x32.png' },
-      { size: 180, name: 'apple-touch-icon.png' }
-    ];
+  // Generate PNG favicons from SVG using ImageMagick, or fallback to committed files
+  const pngSizes = [
+    { size: 16, name: 'favicon-16x16.png' },
+    { size: 32, name: 'favicon-32x32.png' },
+    { size: 180, name: 'apple-touch-icon.png' }
+  ];
 
-    for (const { size, name } of pngSizes) {
-      const outputPath = join(OUTPUT_DIR, name);
-      const success = await generatePNGFavicon('./favicon.svg', outputPath, size);
-      if (success) {
-        console.log(`  ✓ ${name} (generated from SVG)`);
+  for (const { size, name } of pngSizes) {
+    const outputPath = join(OUTPUT_DIR, name);
+    const success = await generatePNGFavicon('./favicon.svg', outputPath, size);
+
+    if (success) {
+      console.log(`  ✓ ${name} (generated from SVG)`);
+    } else {
+      // Fallback: copy committed PNG file if exists
+      if (existsSync(`./${name}`)) {
+        await copyFile(`./${name}`, outputPath);
+        console.log(`  ✓ ${name} (copied from repository)`);
       }
-    }
-  } else {
-    // Fallback: copy PNG favicons if they exist manually
-    const pngSizes = ['16', '32'];
-    for (const size of pngSizes) {
-      const pngFile = `./favicon-${size}x${size}.png`;
-      if (existsSync(pngFile)) {
-        await copyFile(pngFile, join(OUTPUT_DIR, `favicon-${size}x${size}.png`));
-        console.log(`  ✓ favicon-${size}x${size}.png`);
-      }
-    }
-    const appleTouch = './apple-touch-icon.png';
-    if (existsSync(appleTouch)) {
-      await copyFile(appleTouch, join(OUTPUT_DIR, 'apple-touch-icon.png'));
-      console.log('  ✓ apple-touch-icon.png');
     }
   }
 
