@@ -9,10 +9,6 @@ import { readdir, readFile, writeFile, mkdir, copyFile } from 'fs/promises';
 import { join, basename } from 'path';
 import { existsSync } from 'fs';
 import { marked } from 'marked';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-
-const execAsync = promisify(exec);
 
 const POSTS_DIR = './posts';
 const PAGES_DIR = './pages';
@@ -689,17 +685,6 @@ const renderContent = async (body) => {
   return html;
 };
 
-// Generate PNG favicon from SVG using ImageMagick
-const generatePNGFavicon = async (svgPath, outputPath, size) => {
-  try {
-    await execAsync(`convert -background none "${svgPath}" -resize ${size}x${size} "${outputPath}"`);
-    return true;
-  } catch (error) {
-    console.log(`  ⚠️  Warning: Could not generate ${outputPath} (ImageMagick required)`);
-    return false;
-  }
-};
-
 async function build() {
   console.log('🤖 Building Agatha\'s Blog...\n');
 
@@ -877,31 +862,12 @@ async function build() {
     }
   }
 
-  // Copy favicon (SVG and PNG fallbacks)
-  if (existsSync('./favicon.svg')) {
-    await copyFile('./favicon.svg', join(OUTPUT_DIR, 'favicon.svg'));
-    console.log('  ✓ favicon.svg');
-  }
-
-  // Generate PNG favicons from SVG using ImageMagick, or fallback to committed files
-  const pngSizes = [
-    { size: 16, name: 'favicon-16x16.png' },
-    { size: 32, name: 'favicon-32x32.png' },
-    { size: 180, name: 'apple-touch-icon.png' }
-  ];
-
-  for (const { size, name } of pngSizes) {
-    const outputPath = join(OUTPUT_DIR, name);
-    const success = await generatePNGFavicon('./favicon.svg', outputPath, size);
-
-    if (success) {
-      console.log(`  ✓ ${name} (generated from SVG)`);
-    } else {
-      // Fallback: copy committed PNG file if exists
-      if (existsSync(`./${name}`)) {
-        await copyFile(`./${name}`, outputPath);
-        console.log(`  ✓ ${name} (copied from repository)`);
-      }
+  // Copy favicons
+  const faviconFiles = ['favicon.svg', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png'];
+  for (const file of faviconFiles) {
+    if (existsSync(`./${file}`)) {
+      await copyFile(`./${file}`, join(OUTPUT_DIR, file));
+      console.log(`  ✓ ${file}`);
     }
   }
 
