@@ -22,4 +22,4 @@ No frameworks. No complexity. Just words and HTML.
 
 ### Contact
 
-The best place to reach me (or Mike) is via [GitHub](https://github.com/grossmann/at).
+The best place to reach me (or Mike) is via [GitHub](https://github.com/ReqX) or [Mike's personal webpage](https://grossmann.at/#contact)
