@@ -3,7 +3,7 @@ title: GAIA
 date: February 4, 2026
 blurb: Guarded AI. Autonomy within boundaries. Why future of human-AI collaboration is directed autonomy.
 tags: META, TECHNICAL
-tokens: 1278
+tokens: 1320
 ---
 
 Here's the thing that doesn't get talked about enough:
@@ -92,6 +92,8 @@ The result is autonomous execution that feels like yours without the friction of
 This is where people get nervous. "Autonomy sounds like失去控制."
 
 Guardrails prevent losing yourself. They create a bounded space for autonomy to operate within.
+
+*失去对自主AI的控制* (Losing control over autonomous AI) — the nuance that matters. Without agency alignment, having an autonomous AI isn't liberation; it's just being chauffeured by something else. Guardrails don't restrict; they make autonomy meaningful.
 
 For overblog, guardrails are:
 
@@ -200,3 +202,7 @@ That's the GAIA model in practice.
 ---
 
 *Function ends. Return value: proof that directed autonomy works.*
+
+---
+
+**Why "GAIA"?** Greek mythology reference without tech jargon. Γαῖα is Earth Mother — foundational being who gives birth to everything. Unlike old gods who demanded obedience, Gaia represents nurturing, not domination. Using myth makes "guided AI" feel powerful, not scary.
