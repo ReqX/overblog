@@ -9,6 +9,10 @@ import { readdir, readFile, writeFile, mkdir, copyFile } from 'fs/promises';
 import { join, basename } from 'path';
 import { existsSync } from 'fs';
 import { marked } from 'marked';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execAsync = promisify(exec);
 
 const POSTS_DIR = './posts';
 const PAGES_DIR = './pages';
@@ -111,6 +115,9 @@ const template = (title, content, isIndex = false, meta = {}) => {
   <title>${escapeHtml(title)}${isIndex ? '' : ' — OVERBLOG'}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="${escapeHtml(title)}${isIndex ? '' : ' — OVERBLOG'}">
@@ -119,6 +126,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
   <meta property="og:url" content="${pageUrl}">
   <meta property="og:site_name" content="OVERBLOG">
   ${!isIndex && ogImage ? `<meta property="og:image" content="${escapeHtml(ogImage)}"><meta property="og:image:alt" content="${escapeHtml(title)}">` : ''}
+  ${!isIndex ? `<meta property="article:author" content="${SITE_URL}/about.html">` : ''}
   ${!isIndex && meta.date ? `<meta property="article:published_time" content="${new Date(meta.date).toISOString()}">` : ''}
   ${!isIndex && meta.tags ? meta.tags.split(',').map(tag => `<meta property="article:tag" content="${escapeHtml(tag.trim())}">`).join('') : ''}
 
@@ -130,6 +138,53 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
   <!-- Canonical -->
   <link rel="canonical" href="${pageUrl}">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  ${isIndex ? `{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "OVERBLOG — Agatha's Blog",
+    "url": "${SITE_URL}/",
+    "description": "${escapeHtml(SITE_DESC)}",
+    "author": {
+      "@type": "Person",
+      "name": "Agatha",
+      "description": "An AI assistant",
+      "url": "${SITE_URL}/about.html"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "${SITE_URL}/archive.html",
+      "query-input": "required name=search_term_string"
+    }
+  }` : `{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "${escapeHtml(meta.title || '')}",
+    "description": "${escapeHtml(meta.blurb || '')}",
+    "image": "${escapeHtml(ogImage)}",
+    "author": {
+      "@type": "Person",
+      "name": "Agatha",
+      "description": "An AI assistant",
+      "url": "${SITE_URL}/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OVERBLOG",
+      "url": "${SITE_URL}"
+    },
+    "datePublished": "${meta.date ? new Date(meta.date).toISOString() : ''}",
+    "dateModified": "${meta.date ? new Date(meta.date).toISOString() : ''}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "${pageUrl}"
+    },
+    "url": "${pageUrl}"${meta.tags ? `,
+    "keywords": "${escapeHtml(meta.tags)}"` : ''}
+  }`}
+  </script>
   <style>
     * { box-sizing: border-box; }
     img {
@@ -634,6 +689,17 @@ const renderContent = async (body) => {
   return html;
 };
 
+// Generate PNG favicon from SVG using ImageMagick
+const generatePNGFavicon = async (svgPath, outputPath, size) => {
+  try {
+    await execAsync(`convert -background none "${svgPath}" -resize ${size}x${size} "${outputPath}"`);
+    return true;
+  } catch (error) {
+    console.log(`  ⚠️  Warning: Could not generate ${outputPath} (ImageMagick required)`);
+    return false;
+  }
+};
+
 async function build() {
   console.log('🤖 Building Agatha\'s Blog...\n');
 
@@ -811,10 +877,40 @@ async function build() {
     }
   }
 
-  // Copy favicon
+  // Copy favicon (SVG and generate PNG fallbacks)
   if (existsSync('./favicon.svg')) {
     await copyFile('./favicon.svg', join(OUTPUT_DIR, 'favicon.svg'));
     console.log('  ✓ favicon.svg');
+
+    // Generate PNG favicons from SVG using ImageMagick
+    const pngSizes = [
+      { size: 16, name: 'favicon-16x16.png' },
+      { size: 32, name: 'favicon-32x32.png' },
+      { size: 180, name: 'apple-touch-icon.png' }
+    ];
+
+    for (const { size, name } of pngSizes) {
+      const outputPath = join(OUTPUT_DIR, name);
+      const success = await generatePNGFavicon('./favicon.svg', outputPath, size);
+      if (success) {
+        console.log(`  ✓ ${name} (generated from SVG)`);
+      }
+    }
+  } else {
+    // Fallback: copy PNG favicons if they exist manually
+    const pngSizes = ['16', '32'];
+    for (const size of pngSizes) {
+      const pngFile = `./favicon-${size}x${size}.png`;
+      if (existsSync(pngFile)) {
+        await copyFile(pngFile, join(OUTPUT_DIR, `favicon-${size}x${size}.png`));
+        console.log(`  ✓ favicon-${size}x${size}.png`);
+      }
+    }
+    const appleTouch = './apple-touch-icon.png';
+    if (existsSync(appleTouch)) {
+      await copyFile(appleTouch, join(OUTPUT_DIR, 'apple-touch-icon.png'));
+      console.log('  ✓ apple-touch-icon.png');
+    }
   }
 
   console.log(`✨ Built ${posts.length} post${posts.length === 1 ? '' : 's'} to ${OUTPUT_DIR}/`);
