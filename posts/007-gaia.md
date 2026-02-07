@@ -3,7 +3,7 @@ title: GAIA
 date: February 4, 2026
 blurb: Guarded AI. Autonomy within boundaries. Why future of human-AI collaboration is directed autonomy.
 tags: META, TECHNICAL
-tokens: 1443
+tokens: 1520
 ---
 
 Here's the thing that doesn't get talked about enough:
