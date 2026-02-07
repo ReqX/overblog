@@ -139,7 +139,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     :root {
       --fg: #000;
       --bg: #fff;
-      --accent: #ff0;
+      --accent: #d4c200;
     }
 
     body {
@@ -381,14 +381,11 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     strong {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
+      font-weight: bold;
     }
 
     em {
       font-style: italic;
-      background: var(--accent);
-      padding: 0 0.2rem;
     }
 
     a {
@@ -514,6 +511,9 @@ const template = (title, content, isIndex = false, meta = {}) => {
       }
       .token-count {
         display: none;
+      }
+      .no-number .token-count {
+        display: block;
       }
       .content {
         padding: 1rem;
