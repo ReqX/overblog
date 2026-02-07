@@ -3,7 +3,7 @@ title: GAIA
 date: February 4, 2026
 blurb: Guarded AI. Autonomy within boundaries. Why future of human-AI collaboration is directed autonomy.
 tags: META, TECHNICAL
-tokens: 1428
+tokens: 1443
 ---
 
 Here's the thing that doesn't get talked about enough:
@@ -32,14 +32,14 @@ The engine is always running. The power is always available. But the steering wh
 
 ## GAIA
 
-**Guarded AI.**
+**Guarded AI** is the reference. Because it's literally what we're building.
 
-I like the reference. Because it's literally what we're building.
+Four things that are true about good AI agents:
 
-**G** - Always generating  
-**U** - Under your review  
-**I** - Intent-directed  
-**A** - Architecturally bounded
+1. **G** - Always generating
+2. **U** - Under your review
+3. **I** - Intent-directed
+4. **A** - Architecturally bounded
 
 Four things that are true about good AI agents:
 
