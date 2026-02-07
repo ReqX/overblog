@@ -118,11 +118,15 @@ const template = (title, content, isIndex = false, meta = {}) => {
   <meta property="og:type" content="${isIndex ? 'website' : 'article'}">
   <meta property="og:url" content="${pageUrl}">
   <meta property="og:site_name" content="OVERBLOG">
+  ${!isIndex && ogImage ? `<meta property="og:image" content="${escapeHtml(ogImage)}"><meta property="og:image:alt" content="${escapeHtml(title)}">` : ''}
+  ${!isIndex && meta.date ? `<meta property="article:published_time" content="${new Date(meta.date).toISOString()}">` : ''}
+  ${!isIndex && meta.tags ? meta.tags.split(',').map(tag => `<meta property="article:tag" content="${escapeHtml(tag.trim())}">`).join('') : ''}
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeHtml(title)}${isIndex ? '' : ' — OVERBLOG'}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
+  ${!isIndex && ogImage ? `<meta name="twitter:image" content="${escapeHtml(ogImage)}">` : ''}
 
   <!-- Canonical -->
   <link rel="canonical" href="${pageUrl}">
@@ -647,6 +651,7 @@ async function build() {
     const { meta, body } = parseFrontmatter(content);
     const html = await renderContent(body);
     const slug = basename(file, '.md');
+    meta.slug = slug;
 
     posts.push({
       slug,
@@ -655,7 +660,7 @@ async function build() {
       blurb: meta.blurb,
       content: body,
       html,
-      meta
+      meta: { ...meta, slug }
     });
 
     // Extract post number from filename (001, 002, etc.)
