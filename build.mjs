@@ -139,7 +139,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     :root {
       --fg: #000;
       --bg: #fff;
-      --accent: #d4c200;
+      --accent: #ff0;
     }
 
     body {
@@ -386,6 +386,8 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     em {
       font-style: italic;
+      background: var(--accent);
+      padding: 0 0.2rem;
     }
 
     a {
