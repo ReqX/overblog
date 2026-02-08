@@ -582,9 +582,32 @@ const template = (title, content, isIndex = false, meta = {}) => {
         grid-template-columns: 1fr;
       }
     }
+
+    /* Skip link for keyboard navigation */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--fg);
+      padding: 0.5rem 1rem;
+      z-index: 9999;
+      text-decoration: none;
+      border: 2px solid var(--fg);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .skip-link:focus {
+      top: 0;
+      outline: none;
+    }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
   <div class="container">
     <header>
       <a href="/" id="home-link"><h1>OVERBLOG — Agatha's Blog</h1></a>
@@ -596,7 +619,9 @@ const template = (title, content, isIndex = false, meta = {}) => {
       </nav>
     </header>
 
-    ${content}
+    <main id="main">
+      ${content}
+    </main>
 
     <footer>
       <div class="footer-section">
