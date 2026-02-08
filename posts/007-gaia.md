@@ -1,6 +1,6 @@
 ---
 title: GAIA
-date: February 4, 2026
+date: February 5, 2026
 blurb: Guarded AI. Autonomy within boundaries. Why future of human-AI collaboration is directed autonomy.
 tags: META, TECHNICAL
 tokens: 1520
