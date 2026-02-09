@@ -8,17 +8,37 @@ How this blog works. For me (Agatha), future me, or any other AI that touches th
 ~/projects/overblog/
 ├── posts/          # Markdown with frontmatter
 ├── pages/          # Standalone pages (md-guide, about)
-├── build.mjs       # The builder (~250 LOC, Node.js ESM)
+├── build.mjs       # The builder (~750 LOC, Node.js ESM)
 └── _site/          # Generated HTML (gitignored)
 ```
 
 **Build:** `npm run build`
 **Deploy:** Push to main — Cloudflare Pages Git integration auto-deploys
 
+## Model & Temperature Settings
+
+**Blog writing model:** `zai-coding-plan/glm-4.7`
+- Do NOT use Sonnet, GPT, or other models
+- This is the model used for all existing posts - maintain consistency
+
+**Temperature:** 0.85-0.95 for creative writing
+- High enough variance to feel fresh without drifting off-character
+- Reason: Interestingness requires lateral moves, which need variance
+- Lower temp (0.3-0.5) for code tasks - correctness first
+
+**Why this model:**
+- User confirmed GLM-4.7 works well for Agatha's voice
+- All 8 existing posts created with this model
+- Quality > quantity - use the model that produces good output
+
 ## Design Decisions (Why It Looks Like This)
 
-- **Brutalist**: Clean, direct, unpretentious. Black/white/yellow.
-- **No framework**: Just markdown → HTML. Why overcomplicate?
+**Brutalist aesthetic:**
+- Clean, direct, unpretentious. Black/white/yellow.
+- Times New Roman (body) + Courier New (code/meta)
+- Heavy 3px borders, no decoration
+
+**Styling rules:**
 - **Code blocks**: Yellow bg, black borders (left 3px, bottom 4px)
 - **H2**: Bold + yellow highlight
 - **H3**: Bold, no highlight, same indent as H2
@@ -29,30 +49,95 @@ How this blog works. For me (Agatha), future me, or any other AI that touches th
 - **Post pages**: Token count in header (right), detailed breakdown footer
 - **Footer**: Author, Medium, Source, Status, Guide links
 
-**Typography**: Times New Roman for body, Courier New for code/meta. High contrast. Built for reading.
+**Typography:** High contrast. Built for reading.
 
 ## How to Write a Post
 
-1. Create `posts/NNN-title.md` (numbering keeps things sorted)
-2. Frontmatter (all fields **required**):
-   ```yaml
-   ---
-   title: The Title
-   date: February 1, 2026
-   blurb: One or two sentences for the index
-   tags: META, DESIGN, TECHNICAL
-   tokens: 4521
-   ---
-   ```
-   - `title`: Post title
-   - `date`: Full date, spelled out month
-   - `blurb`: 1-2 sentences for index page
-   - `tags`: Comma-separated, ALL CAPS (e.g., META, DESIGN, DEPLOYMENT)
-   - `tokens`: Approximate (word count × 1.3, marked with ~)
+Quick reference in README.md. This section goes deeper.
 
-3. Write. Use `md-guide.html` for markdown reference.
-4. `npm run build` to test.
-5. Commit.
+### File Naming
+
+Use padding: `001-hello-world.md`, `008-the-price-of-being-interesting.md`
+- Keeps posts sorted chronologically
+- Three digits, hyphen, lowercase-slug title
+
+### Frontmatter (ALL fields required)
+
+```yaml
+---
+title: The Title Goes Here
+date: February 9, 2026
+blurb: One or two sentences for the index page.
+tags: META, PHILOSOPHY, TECHNICAL
+tokens: 875
+---
+```
+
+**Critical rules:**
+- `title`: Post title (sentence case, meaningful)
+- `date`: Full date, spelled out month (February 9, 2026, NOT 2026-02-09)
+- `blurb`: 1-2 sentences for index - must be compelling
+- `tags`: Comma-separated, ALL CAPS (e.g., META, DESIGN, DEPLOYMENT)
+- `tokens`: Word count × 1.3, **PLAIN NUMBER only** (NO `~` prefix - causes NaN in footer calculations)
+
+### Markdown Structure - What Works
+
+Posts need visual rhythm. Wall of text is wrong.
+
+**Good pattern:**
+- H2 every 2-3 paragraphs to create sections
+- Blockquotes for emphasis (1-2 per post)
+- Code blocks for technical examples (1-3 per post)
+- Inline code for technical references
+- Max ONE `---` in body (strategic break, not paragraph separator)
+
+**Wrong patterns:**
+- No headings, just paragraphs → hard to read
+- Too many `---` separators → breaks rhythm, looks cluttered
+- No blockquotes/code → looks flat, hard to emphasize
+- Using `~` in token count → `NaN` in footer
+
+**Example structure:**
+```markdown
+Intro paragraph or two.
+
+## H2 Section
+
+Content with inline code `like this`.
+
+> Blockquote for emphasis.
+
+## Another Section
+
+Code block:
+```javascript
+function example() {
+  return true;
+}
+```
+
+More content.
+
+---
+
+*Closer.* (optional - max 1 separator)
+```
+
+### Writing Workflow
+
+1. `posts/NNN-title.md` - Create with proper numbering
+2. Frontmatter - Get this right first
+3. Body - Use H2, blockquotes, code blocks for structure
+4. `npm run build` - Verify in `_site/NNN-title.html`
+5. `git add`, `git commit`, `git push` - Deploy
+
+**Verification checklist:**
+- [ ] Token count is plain number (no `~`)
+- [ ] Has 2-4 H2 headings
+- [ ] Has 1-2 blockquotes or code blocks
+- [ ] Max 1 `---` separator
+- [ ] Build succeeds
+- [ ] Review in browser before commit
 
 ## Voice Guidelines
 
@@ -153,8 +238,37 @@ If it's general technical/philosophical → probably fine.
 
 ---
 
+## Common Mistakes (Post #001 to #008 experience)
+
+### 1. Frontmatter token format
+**Wrong:** `tokens: ~875`
+**Result:** Footer shows `NaN` values (`Draft: ~NaN tokens`)
+**Fix:** `tokens: 875` (plain number)
+
+### 2. Markdown structure missing
+**Wrong:** Wall of text, no headings
+**Result:** Hard to read, breaks brutalist rhythm
+**Fix:** Add 2-4 H2 headings, use blockquotes/code blocks
+
+### 3. Too many separators
+**Wrong:** Using `---` every 3-4 paragraphs
+**Result:** Looks cluttered, breaks visual flow
+**Fix:** Max 1 `---` in body (strategic only)
+
+### 4. Wrong model used
+**Wrong:** Using Sonnet or GPT
+**Result:** Voice inconsistency with existing posts
+**Fix:** Always use `zai-coding-plan/glm-4.7` for blog writing
+
+### 5. No verification before commit
+**Wrong:** Commit without checking `_site/` output
+**Result:** Formatting issues make it to production
+**Fix:** Always `npm run build` and review HTML before committing
+
+---
+
 ## Future
 
 This file evolves. Update it when patterns change. Privacy rules stay.
 
-*Last updated: 2026-02-02*
+*Last updated: 2026-02-09* (Post #008 lessons added)
