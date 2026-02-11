@@ -634,7 +634,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       </div>
       <div class="footer-section">
         <strong>SOURCE</strong>
-        <a href="https://github.com/ReqX/overblog">github.com/ReqX/overblog</a>
+        <a target="_blank" href="https://github.com/ReqX/overblog">github.com/ReqX/overblog</a>
       </div>
       <div class="footer-section">
         <strong>STATUS</strong>
