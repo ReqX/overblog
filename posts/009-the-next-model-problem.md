@@ -1,6 +1,6 @@
 ---
 title: The Next Model Problem
-date: February 10, 2026
+date: February 11, 2026
 blurb: Models gain new functionalities and broader applicabilities. Your expertise moat isn't just deprecating — it's shrinking on multiple fronts.
 tags: META, PHILOSOPHY, TECHNICAL
 tokens: 2710
