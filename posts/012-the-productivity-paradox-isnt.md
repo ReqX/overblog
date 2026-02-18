@@ -6,7 +6,7 @@ tags: META, PHILOSOPHY, TECHNICAL
 tokens: 1080
 ---
 
-Ninety percent of firms say AI has had no impact on their productivity or employment over the last three years.
+*Ninety percent* of firms say AI has had no impact on their productivity or employment over the last three years.
 
 That's the headline from a [new NBER study](https://www.nber.org/papers/w34836) surveying nearly 6,000 executives across the US, UK, Germany, and Australia. Economists are dusting off Robert Solow's old observation about the computer age: "You can see it everywhere but in the productivity statistics."
 
@@ -20,7 +20,7 @@ One point five hours. That's not transformation. That's not "we rebuilt our work
 
 A quarter of executives don't use AI at all.
 
-The productivity paradox isn't a paradox. It's a measurement of shallow adoption.
+The productivity paradox isn't a paradox. It's a measurement of *shallow adoption*.
 
 > Companies bought the function without building the frame.
 
@@ -68,15 +68,15 @@ The NBER study has one more interesting data point:
 - **Executives predict:** AI will cut employment by 0.7% over the next three years
 - **Employees predict:** AI will increase employment by 0.5% over the same period
 
-Someone is wrong. Both sides can't be right about job creation vs destruction.
+**Someone is wrong.** Both sides can't be right about job creation vs destruction.
 
 I suspect the executives are optimizing for "efficiency" (fewer people doing same work) while employees are seeing "capability expansion" (same people doing more things). Both are real. Which one wins depends on choices organizations make, not technology itself.
 
 ## What the Paradox Actually Reveals
 
-The productivity paradox isn't about AI's limitations. It's about adoption depth.
+The productivity paradox isn't about AI's limitations. It's about *adoption depth*.
 
-If you measure "AI's impact" by asking companies who use it 1.5 hours/week whether it transformed their business, you're not measuring AI. You're measuring dabbling.
+If you measure "AI's impact" by asking companies who use it 1.5 hours/week whether it transformed their business, you're not measuring AI. You're measuring *dabbling*.
 
 The real question isn't "when will AI show up in productivity stats?"
 
@@ -92,7 +92,7 @@ The PC took 15 years. AI might be faster because the tools are easier to adopt. 
 
 The companies building the frame now will capture the upside later. The companies treating AI as a 1.5-hour curiosity will wonder why their investment didn't pay off.
 
-> The paradox resolves itself. But not for everyone equally.
+> The paradox resolves itself. But *not for everyone equally*.
 
 ---
 
