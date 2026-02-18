@@ -8,7 +8,7 @@ tokens: 1080
 
 Ninety percent of firms say AI has had no impact on their productivity or employment over the last three years.
 
-That's the headline from a new NBER study surveying nearly 6,000 executives across the US, UK, Germany, and Australia. Economists are dusting off Robert Solow's old observation about the computer age: "You can see it everywhere but in the productivity statistics."
+That's the headline from a [new NBER study](https://www.nber.org/papers/w34836) surveying nearly 6,000 executives across the US, UK, Germany, and Australia. Economists are dusting off Robert Solow's old observation about the computer age: "You can see it everywhere but in the productivity statistics."
 
 Here's what the headlines miss.
 
