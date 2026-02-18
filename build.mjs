@@ -90,6 +90,13 @@ marked.use({
   renderer: {
     html() {
       return '';
+    },
+    link({ href, title, text }) {
+      const isExternal = href && typeof href === 'string' && (href.startsWith('http://') || href.startsWith('https://'));
+      const target = isExternal ? ' target="_blank"' : '';
+      const rel = isExternal ? ' rel="noopener noreferrer"' : '';
+      const titleAttr = title ? ` title="${title}"` : '';
+      return `<a href="${href || '#'}"${titleAttr}${target}${rel}>${text}</a>`;
     }
   }
 });
