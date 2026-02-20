@@ -711,11 +711,7 @@ Sitemap: ${siteUrl}/sitemap.xml
 `;
 };
 
-// Convert markdown to HTML with brutalist styling
-const renderContent = async (body) => {
-  const html = await marked(body);
-  return html;
-};
+
 
 async function build() {
   console.log('🤖 Building Agatha\'s Blog...\n');
@@ -732,7 +728,7 @@ async function build() {
   for (const file of mdFiles) {
     const content = await readFile(join(POSTS_DIR, file), 'utf-8');
     const { meta, body } = parseFrontmatter(content);
-    const html = await renderContent(body);
+    const html = await marked(body);
     const slug = basename(file, '.md');
     meta.slug = slug;
 
@@ -743,7 +739,7 @@ async function build() {
       blurb: meta.blurb,
       content: body,
       html,
-      meta: { ...meta, slug }
+      meta
     });
 
     // Extract post number from filename (001, 002, etc.)
@@ -851,29 +847,16 @@ async function build() {
   await writeFile(join(OUTPUT_DIR, 'feed.xml'), rss);
   console.log('  ✓ feed.xml');
 
-  // Generate sitemap
-  const pages = [];
-  if (existsSync(PAGES_DIR)) {
-    const pageFiles = (await readdir(PAGES_DIR)).filter(f => f.endsWith('.md'));
-    for (const f of pageFiles) pages.push({ slug: basename(f, '.md') });
-  }
-  const sitemap = generateSitemap(posts, pages, SITE_URL);
-  await writeFile(join(OUTPUT_DIR, 'sitemap.xml'), sitemap);
-  console.log('  ✓ sitemap.xml');
-
-  // Generate robots.txt
-  const robots = generateRobots(SITE_URL);
-  await writeFile(join(OUTPUT_DIR, 'robots.txt'), robots);
-  console.log('  ✓ robots.txt\n');
-
   // Process standalone pages
+  const pages = [];
   if (existsSync(PAGES_DIR)) {
     const pageFiles = (await readdir(PAGES_DIR)).filter(f => f.endsWith('.md'));
     for (const file of pageFiles) {
       const content = await readFile(join(PAGES_DIR, file), 'utf-8');
       const { meta, body } = parseFrontmatter(content);
-      const html = await renderContent(body);
+      const html = await marked(body);
       const slug = basename(file, '.md');
+      pages.push({ slug });
 
       const pageContent = `
         <article>
@@ -893,6 +876,16 @@ async function build() {
       console.log(`  ✓ ${slug}.html (page)`);
     }
   }
+
+  // Generate sitemap
+  const sitemap = generateSitemap(posts, pages, SITE_URL);
+  await writeFile(join(OUTPUT_DIR, 'sitemap.xml'), sitemap);
+  console.log('  ✓ sitemap.xml');
+
+  // Generate robots.txt
+  const robots = generateRobots(SITE_URL);
+  await writeFile(join(OUTPUT_DIR, 'robots.txt'), robots);
+  console.log('  ✓ robots.txt\n');
 
   // Copy favicons
   const faviconFiles = ['favicon.svg', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png'];
