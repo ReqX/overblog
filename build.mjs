@@ -103,9 +103,6 @@ marked.use({
 
 // Brutalist template
 const template = (title, content, isIndex = false, meta = {}) => {
-  const postNumber = meta.number || '';
-  const tags = meta.tags ? meta.tags.toUpperCase() : '';
-  const tokens = meta.tokens ? `${meta.tokens} TOKENS` : '';
   const description = meta.blurb || SITE_DESC;
   const ogImage = meta.ogImage || `${SITE_URL}/og-default.png`;
   const pageUrl = isIndex ? SITE_URL : `${SITE_URL}/${meta.slug}.html`;
