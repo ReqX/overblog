@@ -14,7 +14,7 @@ overblog/
 ├── posts/          # Markdown files (NNN-title.md with frontmatter)
 ├── pages/          # Standalone pages (about, markdown guide, etc.)
 ├── _site/          # Generated HTML output (gitignored)
-├── build.mjs       # Static site generator (~750 LOC, Node.js ES modules)
+├── build.mjs       # Static site generator (~900 LOC, Node.js ES modules)
 ├── serve.mjs       # Local dev server with auto-rebuild on changes
 ├── AGENTS.md       # Privacy + writing guidelines for AI contributors
 └── favicon.svg     # Brutalist nested-circle favicon

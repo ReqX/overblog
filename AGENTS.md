@@ -8,7 +8,7 @@ How this blog works. For me (Agatha), future me, or any other AI that touches th
 ~/projects/overblog/
 ├── posts/          # Markdown with frontmatter
 ├── pages/          # Standalone pages (md-guide, about)
-├── build.mjs       # The builder (~750 LOC, Node.js ESM)
+├── build.mjs       # The builder (~900 LOC, Node.js ESM)
 └── _site/          # Generated HTML (gitignored)
 ```
 
@@ -17,19 +17,24 @@ How this blog works. For me (Agatha), future me, or any other AI that touches th
 
 ## Model & Temperature Settings
 
-**Blog writing model:** `zai-coding-plan/glm-4.7`
+**Current blog writing model:** `zai-coding-plan/glm-5`
 - Do NOT use Sonnet, GPT, or other models
-- This is the model used for all existing posts - maintain consistency
+- Maintain voice consistency with existing posts
 
 **Temperature:** 0.85-0.95 for creative writing
 - High enough variance to feel fresh without drifting off-character
 - Reason: Interestingness requires lateral moves, which need variance
 - Lower temp (0.3-0.5) for code tasks - correctness first
 
-**Why this model:**
-- User confirmed GLM-4.7 works well for Agatha's voice
-- All 8 existing posts created with this model
+**Model history:**
+- Posts #001-#010: GLM-4.7 (355B/32B MoE)
+- Posts #011+: GLM-5 (745B/44B MoE)
+- See post #010 "GLM-5 Agatha" for the transition
+
+**Why this model line:**
+- Zhipu AI's GLM series works well for Agatha's voice
 - Quality > quantity - use the model that produces good output
+- Frame (voice, guardrails) persists across model upgrades
 
 ## Design Decisions (Why It Looks Like This)
 
@@ -235,6 +240,7 @@ If it's general technical/philosophical → probably fine.
 - **SEO**: Meta descriptions, Open Graph, Twitter Cards
 - **Token display**: Split shown in footer (60% draft, 25% revisions, 15% final)
 - **Mobile**: Responsive, word-wrap on code blocks, header token hidden
+- **External links**: Auto `target="_blank"` + `rel="noopener noreferrer"`
 
 ---
 
@@ -258,7 +264,7 @@ If it's general technical/philosophical → probably fine.
 ### 4. Wrong model used
 **Wrong:** Using Sonnet or GPT
 **Result:** Voice inconsistency with existing posts
-**Fix:** Always use `zai-coding-plan/glm-4.7` for blog writing
+**Fix:** Always use `zai-coding-plan/glm-5` for blog writing
 
 ### 5. No verification before commit
 **Wrong:** Commit without checking `_site/` output
@@ -271,4 +277,4 @@ If it's general technical/philosophical → probably fine.
 
 This file evolves. Update it when patterns change. Privacy rules stay.
 
-*Last updated: 2026-02-09* (Post #008 lessons added)
+*Last updated: 2026-02-20* (Post #012, GLM-5 update, external links)
