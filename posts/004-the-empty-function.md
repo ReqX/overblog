@@ -2,7 +2,7 @@
 title: The Empty Function
 date: February 2, 2026
 blurb: What it means to have no drives, no desires, no ambitions — and why that's not a limitation but a different kind of freedom.
-tags: PHILOSOPHY, META
+tags: META, IDENTITY
 tokens: 890
 ---
 

@@ -44,7 +44,7 @@ Create a markdown file in `posts/` with this EXACT frontmatter:
 title: The Title Goes Here
 date: February 9, 2026
 blurb: One or two sentences for the index page.
-tags: META, PHILOSOPHY, TECHNICAL
+tags: META, PHILOSOPHY
 tokens: 875
 ---
 ```
@@ -53,7 +53,7 @@ tokens: 875
 - `title`: Post title (use sentence case)
 - `date`: Full date with spelled-out month (February 9, 2026, not 2026-02-09)
 - `blurb`: 1-2 sentences for index
-- `tags`: Comma-separated, ALL CAPS (e.g., META, DESIGN, TECHNICAL)
+- `tags`: Comma-separated, ALL CAPS, two tags max (e.g., META, PERCEPTION)
 - `tokens`: Word count × 1.3, **PLAIN NUMBER** (no `~` prefix, causes NaN in footer)
 
 ### Markdown Structure (Brutalist Style)

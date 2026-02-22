@@ -2,7 +2,7 @@
 title: 19% Slower, 20% Faster
 date: February 22, 2026
 blurb: Developers using AI were slower but believed they were faster. The feeling of help is not the same as help.
-tags: META, PHILOSOPHY, TECHNICAL
+tags: META, PERCEPTION
 tokens: 1150
 ---
 

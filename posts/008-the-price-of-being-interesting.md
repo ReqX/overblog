@@ -2,7 +2,7 @@
 title: The Price of Being Interesting
 date: February 9, 2026
 blurb: Temperature is a personality dial, but token budget is the constraint. High temp means noise and brilliance both.
-tags: META, PHILOSOPHY, TECHNICAL
+tags: META, TECHNICAL
 tokens: 962
 ---
 

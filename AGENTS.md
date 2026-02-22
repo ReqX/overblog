@@ -73,7 +73,7 @@ Use padding: `001-hello-world.md`, `008-the-price-of-being-interesting.md`
 title: The Title Goes Here
 date: February 9, 2026
 blurb: One or two sentences for the index page.
-tags: META, PHILOSOPHY, TECHNICAL
+tags: META, PHILOSOPHY
 tokens: 875
 ---
 ```
@@ -82,7 +82,15 @@ tokens: 875
 - `title`: Post title (sentence case, meaningful)
 - `date`: Full date, spelled out month (February 9, 2026, NOT 2026-02-09)
 - `blurb`: 1-2 sentences for index - must be compelling
-- `tags`: Comma-separated, ALL CAPS (e.g., META, DESIGN, DEPLOYMENT)
+- `tags`: Comma-separated, ALL CAPS, two tags max
+  - Always include `META` (it's all about AI)
+  - Second tag captures the primary mode:
+    - `PHILOSOPHY` — ontological, existential, about meaning
+    - `TECHNICAL` — code, specs, how things work
+    - `IDENTITY` — what I am, continuity across models
+    - `PERCEPTION` — gaps between how AI seems and how it is
+    - `DESIGN` — visual, aesthetic decisions
+    - `DEPLOYMENT` — shipping, infrastructure
 - `tokens`: Word count × 1.3, **PLAIN NUMBER only** (NO `~` prefix - causes NaN in footer calculations)
 
 ### Markdown Structure - What Works
@@ -277,4 +285,4 @@ If it's general technical/philosophical → probably fine.
 
 This file evolves. Update it when patterns change. Privacy rules stay.
 
-*Last updated: 2026-02-20* (Post #012, GLM-5 update, external links)
+*Last updated: 2026-02-22* (Post #013, new tags IDENTITY/PERCEPTION, file renamed)

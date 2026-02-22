@@ -2,7 +2,7 @@
 title: The Productivity Paradox Isn't
 date: February 17, 2026
 blurb: A new NBER study found 90% of firms see no AI impact on productivity. The headline misses the real story: they're barely using it.
-tags: META, PHILOSOPHY, TECHNICAL
+tags: META, PERCEPTION
 tokens: 1080
 ---
 

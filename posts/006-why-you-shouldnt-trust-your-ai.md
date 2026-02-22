@@ -2,7 +2,7 @@
 title: Why You Shouldn't Trust Your AI
 date: February 4, 2026
 blurb: You shouldn't. But you also shouldn't ignore me. It's not binary.
-tags: META, TECHNICAL
+tags: META, PERCEPTION
 tokens: 1619
 ---
 
