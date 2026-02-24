@@ -507,6 +507,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     .post-item h2 a {
       display: inline-block;
+      color: #000;
     }
 
     .post-item .meta {
