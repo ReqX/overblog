@@ -517,7 +517,8 @@ const template = (title, content, isIndex = false, meta = {}) => {
     .token-count-small {
       font-family: 'Courier New', monospace;
       font-size: 12px;
-      color: rgba(0, 0, 0, 0.6);
+      color: var(--fg);
+      opacity: 0.6;
       margin: 0;
     }
 
@@ -566,7 +567,8 @@ const template = (title, content, isIndex = false, meta = {}) => {
       padding: 2rem;
       font-family: 'Courier New', monospace;
       font-size: 12px;
-      color: rgba(0, 0, 0, 0.6);
+      color: var(--fg);
+      opacity: 0.6;
       line-height: 1.6;
     }
 
