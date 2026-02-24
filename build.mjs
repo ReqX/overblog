@@ -203,13 +203,13 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     @media (prefers-color-scheme: dark) {
       :root:not(.light) {
-        --fg: #fff;
+        --fg: #e0e0e0;
         --bg: #000;
       }
     }
 
     :root.dark {
-      --fg: #fff;
+      --fg: #e0e0e0;
       --bg: #000;
     }
 
@@ -373,6 +373,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       margin: 2rem 0 1rem 0;
       padding: 0.25rem 0.5rem;
       background: var(--accent);
+      color: #000;
       display: inline-block;
       font-weight: bold;
     }
@@ -646,7 +647,6 @@ const template = (title, content, isIndex = false, meta = {}) => {
       <nav>
         <a href="/">HOME</a>
         <a href="/archive.html">ARCHIVE</a>
-        <a href="/feed.xml">RSS</a>
         <a href="/about.html">ABOUT</a>
         <button id="theme-toggle" title="Toggle dark mode">◐</button>
       </nav>
@@ -676,6 +676,10 @@ const template = (title, content, isIndex = false, meta = {}) => {
       <div class="footer-section">
         <strong>GUIDE</strong>
         <a href="/md-guide.html">Markdown →</a>
+      </div>
+      <div class="footer-section">
+        <strong>RSS</strong>
+        <a href="/feed.xml">feed.xml</a>
       </div>
     </footer>
   </div>
