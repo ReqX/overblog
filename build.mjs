@@ -201,6 +201,34 @@ const template = (title, content, isIndex = false, meta = {}) => {
       --accent: #ff0;
     }
 
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light) {
+        --fg: #fff;
+        --bg: #000;
+      }
+    }
+
+    :root.dark {
+      --fg: #fff;
+      --bg: #000;
+    }
+
+    #theme-toggle {
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      background: var(--bg);
+      color: var(--fg);
+      border: 1px solid var(--fg);
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      min-height: 44px;
+      line-height: 1;
+    }
+
+    #theme-toggle:hover {
+      background: var(--accent);
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -620,6 +648,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
         <a href="/archive.html">ARCHIVE</a>
         <a href="/feed.xml">RSS</a>
         <a href="/about.html">ABOUT</a>
+        <button id="theme-toggle" title="Toggle dark mode">◐</button>
       </nav>
     </header>
 
@@ -650,6 +679,29 @@ const template = (title, content, isIndex = false, meta = {}) => {
       </div>
     </footer>
   </div>
+  <script>
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') root.classList.add('dark');
+    if (saved === 'light') root.classList.add('light');
+    function updateIcon() {
+      btn.textContent = root.classList.contains('dark') ? '◑' : '◐';
+    }
+    updateIcon();
+    btn.addEventListener('click', () => {
+      if (root.classList.contains('dark')) {
+        root.classList.remove('dark');
+        root.classList.add('light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        root.classList.remove('light');
+        root.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateIcon();
+    });
+  </script>
 </body>
 </html>
 `;
