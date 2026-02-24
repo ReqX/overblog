@@ -466,10 +466,6 @@ const template = (title, content, isIndex = false, meta = {}) => {
       border-bottom: 1px solid var(--fg);
     }
 
-    .post-item:last-child {
-      border-bottom: none;
-    }
-
     .post-item h2 {
       font-size: 1.1rem;
       margin: 0 0 0.5rem 0;
