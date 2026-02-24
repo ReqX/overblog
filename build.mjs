@@ -226,7 +226,8 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     #theme-toggle:hover {
-      background: var(--accent);
+      background: var(--fg);
+      color: var(--bg);
     }
 
     body {
@@ -391,6 +392,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       padding: 1rem 1rem 1rem 3rem;
       border: 2px solid var(--fg);
       background: var(--accent);
+      color: #000;
       font-style: italic;
       position: relative;
     }
@@ -411,6 +413,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       font-family: 'Courier New', monospace;
       font-size: 0.85em;
       background: var(--accent);
+      color: #000;
       padding: 0.1rem 0.3rem;
     }
 
@@ -422,7 +425,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       margin: 2rem 0;
       font-family: 'Courier New', monospace;
       font-size: 0.85em;
-      color: var(--fg);
+      color: #000;
       overflow-wrap: break-word;
       word-break: break-word;
     }
@@ -476,6 +479,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     em {
       font-style: italic;
       background: var(--accent);
+      color: #000;
       padding: 0 0.2rem;
     }
 
