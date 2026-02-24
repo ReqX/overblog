@@ -491,6 +491,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     a:hover {
       background: var(--accent);
+      color: #000;
       text-decoration: none;
     }
 
