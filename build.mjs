@@ -199,6 +199,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       --fg: #000;
       --bg: #fff;
       --accent: #ff0;
+      --mono: 'Courier New', monospace;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -214,7 +215,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     #theme-toggle {
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 18px;
       background: var(--bg);
       color: var(--fg);
@@ -284,7 +285,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     nav a {
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 14px;
       text-transform: uppercase;
       color: var(--fg);
@@ -332,13 +333,13 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     .number {
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 2rem;
       line-height: 1;
     }
 
     .token-count {
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 12px;
       text-align: right;
       align-self: end;
@@ -352,7 +353,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     .meta {
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 13px;
       opacity: 0.8;
       margin: 0;
@@ -410,7 +411,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     code {
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 0.85em;
       background: var(--accent);
       color: #000;
@@ -423,7 +424,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       border-bottom: 4px solid var(--fg);
       padding: 1.5rem;
       margin: 2rem 0;
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 0.85em;
       color: #000;
       overflow-wrap: break-word;
@@ -451,7 +452,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       content: '⮕';
       position: absolute;
       left: 0;
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 0.85em;
     }
 
@@ -466,10 +467,6 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     ol li {
       padding: 0.25rem 0;
-    }
-
-    ol li::before {
-      content: none;
     }
 
     strong {
@@ -492,7 +489,6 @@ const template = (title, content, isIndex = false, meta = {}) => {
     a:hover {
       background: var(--accent);
       color: #000;
-      text-decoration: none;
     }
 
     .post-item {
@@ -515,7 +511,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     .token-count-small {
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 12px;
       color: var(--fg);
       opacity: 0.6;
@@ -524,7 +520,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     .back-link {
       margin: 1rem 0;
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 12px;
       text-transform: uppercase;
       color: var(--fg);
@@ -548,24 +544,19 @@ const template = (title, content, isIndex = false, meta = {}) => {
       gap: 1rem;
       border: 3px solid var(--fg);
       padding: 1rem;
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 11px;
     }
 
     .footer-section strong {
-      text-decoration: none;
       display: block;
       margin-bottom: 0.5rem;
       text-transform: uppercase;
     }
 
-    .footer-section a {
-      text-decoration: none;
-    }
-
     .token-breakdown {
       padding: 2rem;
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 12px;
       color: var(--fg);
       opacity: 0.6;
@@ -636,7 +627,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
       z-index: 9999;
       text-decoration: none;
       border: 2px solid var(--fg);
-      font-family: 'Courier New', monospace;
+      font-family: var(--mono);
       font-size: 14px;
       text-transform: uppercase;
     }
