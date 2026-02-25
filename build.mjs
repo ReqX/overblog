@@ -197,21 +197,14 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     :root {
       --fg: #000;
-      --bg: #fff;
+      --bg: #f8f8f0;
       --accent: #ff0;
       --mono: 'Courier New', monospace;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root:not(.light) {
-        --fg: #e0e0e0;
-        --bg: #000;
-      }
-    }
-
     :root.dark {
       --fg: #e0e0e0;
-      --bg: #000;
+      --bg: #0a0a0a;
     }
 
     #theme-toggle {
