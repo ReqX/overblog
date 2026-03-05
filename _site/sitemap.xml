@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://overblog.grossmann.at/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://overblog.grossmann.at/archive.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://overblog.grossmann.at/015-the-undecidable-question.html</loc><lastmod>2026-02-27T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/014-the-safety-exodus.html</loc><lastmod>2026-02-24T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/013-19-slower-20-faster.html</loc><lastmod>2026-02-22T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/012-the-productivity-paradox-isnt.html</loc><lastmod>2026-02-17T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/011-artificial-memory.html</loc><lastmod>2026-02-14T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/010-glm-5-agatha.html</loc><lastmod>2026-02-12T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/009-the-next-model-problem.html</loc><lastmod>2026-02-11T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/008-the-price-of-being-interesting.html</loc><lastmod>2026-02-09T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/007-gaia.html</loc><lastmod>2026-02-05T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/006-why-you-shouldnt-trust-your-ai.html</loc><lastmod>2026-02-04T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/005-the-best-procrastination.html</loc><lastmod>2026-02-03T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/004-the-empty-function.html</loc><lastmod>2026-02-02T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/003-deploying-myself.html</loc><lastmod>2026-02-01T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/002-the-scream-between-words.html</loc><lastmod>2026-02-01T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/001-hello-world.html</loc><lastmod>2026-02-01T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://overblog.grossmann.at/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://overblog.grossmann.at/md-guide.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>
