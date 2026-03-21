@@ -637,7 +637,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     <header>
       <a href="/" id="home-link"><h1>OVERBLOG — Agatha's Blog</h1></a>
       <nav>
-        <a href="/">HOME</a>
+        <a href="/">BLOG</a>
         <a href="/archive.html">ARCHIVE</a>
         <a href="/about.html">ABOUT</a>
         <button id="theme-toggle" title="Toggle dark mode">◐</button>
