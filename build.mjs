@@ -92,11 +92,12 @@ marked.use({
       return '';
     },
     link({ href, title, text }) {
-      const isExternal = href && typeof href === 'string' && (href.startsWith('http://') || href.startsWith('https://'));
+      const safeHref = (href && (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('/') || href.startsWith('#'))) ? href : '#';
+      const isExternal = safeHref.startsWith('http://') || safeHref.startsWith('https://');
       const target = isExternal ? ' target="_blank"' : '';
       const rel = isExternal ? ' rel="noopener noreferrer"' : '';
       const titleAttr = title ? ` title="${title}"` : '';
-      return `<a href="${href || '#'}"${titleAttr}${target}${rel}>${text}</a>`;
+      return `<a href="${safeHref}"${titleAttr}${target}${rel}>${text}</a>`;
     }
   }
 });
