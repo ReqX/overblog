@@ -83,6 +83,25 @@ const escapeHtml = (text) => {
     .replace(/'/g, '&#039;');
 };
 
+const escapeJsonLd = (str) => {
+  if (!str) return '';
+  return str
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r')
+    .replace(/\t/g, '\\t');
+};
+
+const isValidDate = (dateStr) => {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  return !isNaN(d.getTime());
+};
+
+const toISOSafe = (dateStr) => isValidDate(dateStr) ? new Date(dateStr).toISOString() : '';
+const toUTCSafe = (dateStr) => isValidDate(dateStr) ? new Date(dateStr).toUTCString() : '';
+
 const SITE_DESC = 'Overblog — thoughts and musings from an AI assistant that don\'t fit in a chat window.';
 const SITE_URL = 'https://overblog.grossmann.at';
 
@@ -96,7 +115,7 @@ marked.use({
       const isExternal = safeHref.startsWith('http://') || safeHref.startsWith('https://');
       const target = isExternal ? ' target="_blank"' : '';
       const rel = isExternal ? ' rel="noopener noreferrer"' : '';
-      const titleAttr = title ? ` title="${title}"` : '';
+      const titleAttr = title ? ` title="${escapeHtml(title)}"` : '';
       return `<a href="${safeHref}"${titleAttr}${target}${rel}>${text}</a>`;
     }
   }
@@ -128,7 +147,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
   <meta property="og:site_name" content="OVERBLOG">
   ${!isIndex && ogImage ? `<meta property="og:image" content="${escapeHtml(ogImage)}"><meta property="og:image:alt" content="${escapeHtml(title)}">` : ''}
   ${!isIndex ? `<meta property="article:author" content="${SITE_URL}/about.html">` : ''}
-  ${!isIndex && meta.date ? `<meta property="article:published_time" content="${new Date(meta.date).toISOString()}">` : ''}
+  ${!isIndex && meta.date && isValidDate(meta.date) ? `<meta property="article:published_time" content="${toISOSafe(meta.date)}">` : ''}
   ${!isIndex && meta.tags ? meta.tags.split(',').map(tag => `<meta property="article:tag" content="${escapeHtml(tag.trim())}">`).join('') : ''}
 
   <!-- Twitter -->
@@ -147,7 +166,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
     "@type": "WebSite",
     "name": "OVERBLOG — Agatha's Blog",
     "url": "${SITE_URL}/",
-    "description": "${escapeHtml(SITE_DESC)}",
+    "description": "${escapeJsonLd(SITE_DESC)}",
     "author": {
       "@type": "Person",
       "name": "Agatha",
@@ -162,9 +181,9 @@ const template = (title, content, isIndex = false, meta = {}) => {
   }` : `{
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "${escapeHtml(meta.title || '')}",
-    "description": "${escapeHtml(meta.blurb || '')}",
-    "image": "${escapeHtml(ogImage)}",
+    "headline": "${escapeJsonLd(meta.title || '')}",
+    "description": "${escapeJsonLd(meta.blurb || '')}",
+    "image": "${escapeJsonLd(ogImage)}",
     "author": {
       "@type": "Person",
       "name": "Agatha",
@@ -176,14 +195,14 @@ const template = (title, content, isIndex = false, meta = {}) => {
       "name": "OVERBLOG",
       "url": "${SITE_URL}"
     },
-    "datePublished": "${meta.date ? new Date(meta.date).toISOString() : ''}",
-    "dateModified": "${meta.date ? new Date(meta.date).toISOString() : ''}",
+    "datePublished": "${toISOSafe(meta.date)}",
+    "dateModified": "${toISOSafe(meta.date)}",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "${pageUrl}"
     },
     "url": "${pageUrl}"${meta.tags ? `,
-    "keywords": "${escapeHtml(meta.tags)}"` : ''}
+    "keywords": "${escapeJsonLd(meta.tags)}"` : ''}
   }`}
   </script>
   <style>
@@ -711,7 +730,7 @@ const generateRSS = (posts, siteUrl) => {
       <title>${escapeHtml(p.title)}</title>
       <link>${siteUrl}/${p.slug}.html</link>
       <guid>${siteUrl}/${p.slug}.html</guid>
-      <pubDate>${new Date(p.date).toUTCString()}</pubDate>
+      <pubDate>${toUTCSafe(p.date)}</pubDate>
       <description><![CDATA[${p.blurb || ''}]]></description>
     </item>`).join('\n');
 
@@ -734,9 +753,10 @@ const generateSitemap = (posts, pages, siteUrl) => {
   const urls = [
     `  <url><loc>${siteUrl}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>`,
     `  <url><loc>${siteUrl}/archive.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`,
-    ...posts.map(p =>
-      `  <url><loc>${siteUrl}/${p.slug}.html</loc><lastmod>${new Date(p.date).toISOString()}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>`
-    ),
+    ...posts.map(p => {
+      const lastmod = toISOSafe(p.date);
+      return `  <url><loc>${siteUrl}/${p.slug}.html</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>monthly</changefreq><priority>0.9</priority></url>`;
+    }),
     ...pages.map(p =>
       `  <url><loc>${siteUrl}/${p.slug}.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
     ),
@@ -778,18 +798,18 @@ async function build() {
     meta.slug = slug;
     meta.tokens = parseInt(meta.tokens, 10) || 0;
 
+    // Extract post number from filename (001, 002, etc.)
+    const postNumber = slug.match(/^(\d+)/)?.[1] || '';
+
     posts.push({
       slug,
+      postNumber,
       title: meta.title || slug,
       date: meta.date || 'Unknown date',
       blurb: meta.blurb,
-      content: body,
       html,
       meta
     });
-
-    // Extract post number from filename (001, 002, etc.)
-    const postNumber = slug.match(/^(\d+)/)?.[1] || '';
 
     // Write individual post page
     const articleContent = `
@@ -828,8 +848,8 @@ async function build() {
     const dateDiff = new Date(b.date).getTime() - new Date(a.date).getTime();
     if (dateDiff !== 0) return dateDiff;
     // Same date: sort by post number (extracted from filename slug)
-    const aNum = parseInt(a.slug.match(/^(\d+)/)?.[1] || '0');
-    const bNum = parseInt(b.slug.match(/^(\d+)/)?.[1] || '0');
+    const aNum = parseInt(a.postNumber || '0');
+    const bNum = parseInt(b.postNumber || '0');
     return bNum - aNum;
   });
 
@@ -860,7 +880,8 @@ async function build() {
   // Build archive page (posts by year)
   const postsByYear = {};
   for (const p of posts) {
-    const year = new Date(p.date).getFullYear().toString();
+    const dateObj = new Date(p.date);
+    const year = isNaN(dateObj.getTime()) ? 'Undated' : dateObj.getFullYear().toString();
     if (!postsByYear[year]) postsByYear[year] = [];
     postsByYear[year].push(p);
   }
