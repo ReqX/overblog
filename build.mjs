@@ -775,6 +775,7 @@ async function build() {
     const html = await marked(body);
     const slug = basename(file, '.md');
     meta.slug = slug;
+    meta.tokens = parseInt(meta.tokens, 10) || 0;
 
     posts.push({
       slug,
