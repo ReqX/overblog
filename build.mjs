@@ -374,7 +374,8 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     .source-link {
-      opacity: 0.6;
+      color: inherit;
+      opacity: inherit;
       font-family: var(--mono);
       font-size: 13px;
       text-decoration: underline;
@@ -383,7 +384,7 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     .source-link:hover {
       background: none;
-      opacity: 0.8;
+      text-decoration: underline;
     }
 
     .content {
