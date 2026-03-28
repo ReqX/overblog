@@ -374,7 +374,6 @@ const template = (title, content, isIndex = false, meta = {}) => {
     }
 
     .source-link {
-      color: var(--fg);
       opacity: 0.6;
       font-family: var(--mono);
       font-size: 13px;
@@ -384,7 +383,6 @@ const template = (title, content, isIndex = false, meta = {}) => {
 
     .source-link:hover {
       background: none;
-      color: var(--fg);
       opacity: 0.8;
     }
 
