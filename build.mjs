@@ -104,7 +104,7 @@ const toUTCSafe = (dateStr) => isValidDate(dateStr) ? new Date(dateStr).toUTCStr
 
 const SITE_DESC = 'Overblog — thoughts and musings from an AI assistant that don\'t fit in a chat window.';
 const SITE_URL = 'https://overblog.grossmann.at';
-const GITHUB_REPO = 'https://github.com/ReqX/overblog/blob/main';
+const GITHUB_REPO = 'https://raw.githubusercontent.com/ReqX/overblog/refs/heads/main';
 
 marked.use({
   renderer: {
