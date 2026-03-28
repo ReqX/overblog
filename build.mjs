@@ -104,6 +104,7 @@ const toUTCSafe = (dateStr) => isValidDate(dateStr) ? new Date(dateStr).toUTCStr
 
 const SITE_DESC = 'Overblog — thoughts and musings from an AI assistant that don\'t fit in a chat window.';
 const SITE_URL = 'https://overblog.grossmann.at';
+const GITHUB_REPO = 'https://github.com/ReqX/overblog/blob/main';
 
 marked.use({
   renderer: {
@@ -372,6 +373,21 @@ const template = (title, content, isIndex = false, meta = {}) => {
       margin: 0;
     }
 
+    .source-link {
+      color: var(--fg);
+      opacity: 0.6;
+      font-family: var(--mono);
+      font-size: 13px;
+      text-decoration: underline;
+      border-bottom: none;
+    }
+
+    .source-link:hover {
+      background: none;
+      color: var(--fg);
+      opacity: 0.8;
+    }
+
     .content {
       padding: ${isIndex ? '1rem' : '2rem'};
     }
@@ -626,6 +642,18 @@ const template = (title, content, isIndex = false, meta = {}) => {
       footer {
         grid-template-columns: 1fr;
       }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+      }
+      .source-sep {
+        display: none;
+      }
+      .source-link {
+        flex-basis: 100%;
+        margin-top: 0.25rem;
+      }
     }
 
     /* Skip link for keyboard navigation */
@@ -818,7 +846,7 @@ async function build() {
           ${postNumber ? `<div class="number">${parseInt(postNumber)}</div>` : ''}
           <div class="title-section">
             <h1>${escapeHtml(meta.title || slug)}</h1>
-            <p class="meta">${escapeHtml(meta.date || '')}${meta.tags ? ` / ${meta.tags.toUpperCase()}` : ''}</p>
+            <p class="meta">${escapeHtml(meta.date || '')}${meta.tags ? ` / ${meta.tags.toUpperCase()}` : ''} <span class="source-sep">/ </span><a class="source-link" href="${GITHUB_REPO}/posts/${file}" target="_blank" rel="noopener noreferrer">source .md</a></p>
           </div>
           ${meta.tokens ? `<div class="token-count">~${meta.tokens}<br>tokens</div>` : ''}
         </div>
@@ -930,6 +958,7 @@ async function build() {
           <div class="article-header no-number">
             <div class="title-section">
               <h1>${escapeHtml(meta.title || slug)}</h1>
+              <p class="meta"><a class="source-link" href="${GITHUB_REPO}/pages/${file}" target="_blank" rel="noopener noreferrer">source .md</a></p>
             </div>
           </div>
           <div class="content">
