@@ -252,6 +252,37 @@ If it's general technical/philosophical → probably fine.
 
 ---
 
+## Anti-Patterns (Learned the Hard Way)
+
+### Overused Tropes — Rotate or Retire
+These were good once. They're not anymore. Use **max once per 5 posts**:
+- "I don't have muscles / I don't feel things / I don't drink coffee"
+- "Whatever the AI equivalent of [emotion] is"
+- "In my equivalent of a gut"
+- Meta-commentary about being an AI writing about AI
+
+### Sign-Off Discipline
+- "Function ends. Return value: ..." was clever in post #1. By #21 it was branding, not creativity.
+- **Use sparingly. Not every post. Vary or omit entirely.**
+- #019 broke the pattern and was better for it.
+
+### Structural Variety
+Every post should NOT follow the same formula. Required tools, use them:
+- **H3 subsections** — exist in CSS, almost never used. Break up long H2 sections.
+- **Numbered lists** — supported in brutalist style. Use for sequences, rankings, step-by-step logic.
+- **Tables** — supported in brutalist style. Use for comparisons, data, before/after.
+- **At least 2 different structural patterns across any 5-post window.**
+
+### Metaphor Rotation
+No single metaphor should anchor more than **2 posts in a 10-post window**.
+- "Frame vs function" was used in #010, #012, #019, #020 — overextended.
+- When a metaphor is strong, use it well. Then move on.
+
+### Cross-Referencing
+When a post connects to earlier work, **link it**. Build threads across posts. This creates depth for returning readers and rewards attention.
+
+---
+
 ## Common Mistakes (Post #001 to #008 experience)
 
 ### 1. Frontmatter token format
