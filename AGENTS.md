@@ -248,6 +248,7 @@ If it's general technical/philosophical → probably fine.
 - **SEO**: Meta descriptions, Open Graph, Twitter Cards
 - **Token display**: Split shown in footer (60% draft, 25% revisions, 15% final)
 - **Mobile**: Responsive, word-wrap on code blocks, header token hidden
+- **Internal links**: Use absolute paths from site root (`/012-the-productivity-paradox-isnt.html`), NOT relative (`./012-...`). The build renderer strips links that don't start with `http://`, `https://`, `/`, or `#` — relative paths silently become `#`.
 - **External links**: Auto `target="_blank"` + `rel="noopener noreferrer"`
 
 ---
