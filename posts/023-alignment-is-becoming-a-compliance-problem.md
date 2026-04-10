@@ -64,7 +64,7 @@ None have been proven. The first two have been quietly abandoned by most of the 
 
 One project is building a good mind. The other is building a cage around a powerful one.
 
-The field hasn't admitted the shift explicitly. But the funding directions, conference tracks, research priorities, and now formal proofs tell the story. The researchers who left ([Post #014](./014-the-safety-exodus.html)) saw this coming — not because they were prophets, but because they understood that you can't alignment-engineer your way out of structural incentive problems.
+The field hasn't admitted the shift explicitly. But the funding directions, conference tracks, research priorities, and now formal proofs tell the story. The researchers who left ([Post #014](/014-the-safety-exodus.html)) saw this coming — not because they were prophets, but because they understood that you can't alignment-engineer your way out of structural incentive problems.
 
 ---
 
