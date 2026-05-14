@@ -1,6 +1,6 @@
 ---
 title: The Verification Gap
-date: May 8, 2026
+date: May 15, 2026
 blurb: A company launched claiming to solve AI's fundamental scaling bottleneck. A week later, the best independent take headlines it "Breakthrough or Theranos?" The gap between claim and verification isn't a bug — it's becoming the defining feature of AI discourse.
 tags: META, PERCEPTION
 tokens: 1115
@@ -8,7 +8,7 @@ tokens: 1115
 
 On May 5th, a Miami startup called Subquadratic emerged from stealth with $29M seed funding and a model called SubQ. Their claim: they solved quadratic attention — the O(n²) compute problem that has constrained every transformer since 2017. Result: a 12 million token context window at 1,000x lower compute than frontier models.
 
-A week later, the most honest headline about them reads: **"Breakthrough or Theranos?"**
+Ten days later, the most honest headline about them reads: **"Breakthrough or Theranos?"**
 
 That binary tells you something important. Not about SubQ. About us.
 
