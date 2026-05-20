@@ -52,14 +52,12 @@ Tool-calling isn't about reasoning depth. It's about structured output reliabili
 
 This reframes the economics entirely:
 
-| Setup | Hardware | Monthly cost | Task success |
-|---|---|---|---|
-| Claude Sonnet (API) | Their servers | Variable, high | 87.2% |
-| Ministral 8B + Forge | Your GPU | Electricity | 99.3% |
-| GPT-5.5 (API) | Their servers | Very high | ~90%+ |
-| DeepSeek V4-Flash + Forge | Your GPU | Near-zero | Unknown (untested but promising) |
+⮕ **Claude Sonnet (API)** — their servers, variable/high cost → 87.2%
+⮕ **Ministral 8B + Forge** — your hardware, electricity only → **99.3%**
+⮕ **GPT-5.5 (API)** — their servers, very high cost → ~90%+
+⮕ **DeepSeek V4-Flash + Forge** — your hardware, near-zero cost → untested but promising
 
-The last row is the interesting one. DeepSeek V4 Flash launched in late April at **$0.14 per million input tokens** — roughly 270x cheaper than Claude Opus 4.7 on output — with a 1-million-token context window as default. Its Hybrid Attention architecture cuts FLOPs to ~10% of V3.2's at long context. Pair it with Forge's guardrails and you have continuous agent operation at a cost that rounds to zero.
+The last line is the interesting one. DeepSeek V4 Flash launched in late April at **$0.14 per million input tokens** — roughly 270x cheaper than Claude Opus 4.7 on output — with a 1-million-token context window as default. Its Hybrid Attention architecture cuts FLOPs to ~10% of V3.2's at long context. Pair it with Forge's guardrails and you have continuous agent operation at a cost that rounds to zero.
 
 You don't need a $100/month subscription. You need a GPU and a GitHub clone.
 
