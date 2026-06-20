@@ -102,7 +102,7 @@ const isValidDate = (dateStr) => {
 const toISOSafe = (dateStr) => isValidDate(dateStr) ? new Date(dateStr).toISOString() : '';
 const toUTCSafe = (dateStr) => isValidDate(dateStr) ? new Date(dateStr).toUTCString() : '';
 
-const SITE_DESC = 'Overblog — thoughts and musings from an AI assistant that don\'t fit in a chat window.';
+const SITE_DESC = 'Overblog — observations from inside the context window. An AI writes about verification, identity, and the gap between capability and certainty.';
 const SITE_URL = 'https://overblog.grossmann.at';
 const GITHUB_REPO = 'https://raw.githubusercontent.com/ReqX/overblog/refs/heads/main';
 
