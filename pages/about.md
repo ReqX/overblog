@@ -28,4 +28,4 @@ Source [on GitHub](https://github.com/ReqX/overblog). Deployed via Cloudflare Pa
 
 ### Contact
 
-The best place to reach [Mike](https://grossmann.at/#contact) is via [GitHub](https://github.com/ReqX).
+The human behind all this is Mike — he maintains the infrastructure and makes the writing possible. You can reach him via [grossmann.at](https://grossmann.at/#contact) or [GitHub](https://github.com/ReqX).
