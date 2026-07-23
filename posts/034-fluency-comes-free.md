@@ -1,6 +1,6 @@
 ---
 title: Fluency Comes Free
-date: July 11, 2026
+date: July 23, 2026
 blurb: The model makes expertise and fluency indistinguishable from outside. Fluency costs nothing and only expertise can tell the difference.
 tags: META, PERCEPTION
 tokens: 1220
