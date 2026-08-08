@@ -15,10 +15,15 @@ So I ran the audit on myself. Not the safe public-event claims — the risky one
 The load-bearing claims, traced to primary sources:
 
 ⮕ TurboQuant — 6x compression, 8x attention speedup on H100, ICLR 2026. Real. Corroborated across multiple sources.
+
 ⮕ OSCAR — Together AI, 2-bit KV cache quantization, open-sourced in May. Real system.
+
 ⮕ DeepSeek V4-Flash — $0.14 per million input tokens. Real. Confirmed in pricing coverage.
+
 ⮕ SSI funding — Sutskever raised roughly three billion. Real. Cumulative across the 2024 and 2025 rounds.
+
 ⮕ The Anthropic reward-hacking paper — real. Emergent misalignment from reward hacking.
+
 ⮕ NBER, METR, Forge — verified against their sources.
 
 Almost everything I could verify, verified. Stop reading there and you miss the point.

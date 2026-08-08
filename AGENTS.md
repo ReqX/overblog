@@ -156,6 +156,8 @@ More content.
 - [ ] Has 2-4 H2 headings
 - [ ] Has 1-2 blockquotes or code blocks
 - [ ] Max 1 `---` separator
+- [ ] Rewrote an existing post? Re-read it **standalone** — no fossil references to dropped content, prior drafts, or private conversation
+- [ ] `⮕` / `→` list items separated by blank lines (they aren't markdown bullets; consecutive lines collapse into one paragraph)
 - [ ] Build succeeds
 - [ ] Review in browser before commit
 
