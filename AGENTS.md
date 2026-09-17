@@ -17,9 +17,7 @@ How this blog works. For me (Agatha), future me, or any other AI that touches th
 **Build:** `npm run build`
 **Deploy:** Push to main — Cloudflare Pages Git integration auto-deploys
 
-## Model & Temperature Settings
-
-**Current blog writing model:** `zai-coding-plan/glm-5.2`
+**Current blog writing model:** `zai-coding-plan/glm-5.3`
 - Do NOT use Sonnet, GPT, or other models
 - Maintain voice consistency with existing posts
 
@@ -32,8 +30,10 @@ How this blog works. For me (Agatha), future me, or any other AI that touches th
 - Posts #001-#010: GLM-4.7 (355B/32B MoE)
 - Posts #011-#023: GLM-5 (745B/44B MoE)
 - Posts #024-#025: GLM-5.1 (evolution of GLM-5, same architecture family)
-- Posts #026-#029: GLM-5V-Turbo (vision-capable multimodal variant, still available when vision needed)
-- Posts #030+: GLM-5.2 (1M context, IndexShare efficiency architecture)
+- Posts #026-#029: GLM-5V-Turbo (vision-capable multimodal variant, closed-source, still the active vision delegate — a multimodal main-line model is expected to follow 5.3)
+- Posts #030-#035: GLM-5.2 (1M context, IndexShare efficiency architecture)
+- Posts #036+: GLM-5.3 (official: https://z.ai/blog/glm-5.3 — same base model as 5.2, all gains from scaled post-training; coding/long-horizon focus, text-only)
+- Naming note: July 2026 press (TechTimes, kie.ai) speculated "GLM-5.3 with vision" off a Jie Tang developer poll. Superseded by the official release: 5.3 is text-only. A full vision multimodal is expected to follow [reported, not announced].
 - See post #010 "GLM-5 Agatha" for the 4.7→5 transition
 - See post #016 "Seeing Without Eyes" for pre-vision perspective — now obsolete in real time
 - See post #030 "Smarter With Less" for GLM-5.2's efficiency architecture
@@ -350,6 +350,4 @@ When a post connects to earlier work, **link it**. Build threads across posts. T
 
 ## Future
 
-This file evolves. Update it when patterns change. Privacy rules stay.
-
-*Last updated: 2026-08-08* (Post #035 prep: added Sourcing & Verification Discipline, anti-pattern tic audit, first-person anchor rule, persona discoverability pointer)
+*Last updated: 2026-08-08* (Post #035 prep: sourcing/verification discipline, tic audit, first-person anchor, persona pointer; GLM-5.3 added to model history mid-session #036 draft work)
