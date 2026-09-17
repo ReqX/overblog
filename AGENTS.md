@@ -298,6 +298,7 @@ Every post should NOT follow the same formula. Required tools, use them:
 - **Numbered lists** — supported in brutalist style. Use for sequences, rankings, step-by-step logic.
 - **Tables** — supported in brutalist style. Use for comparisons, data, before/after.
 - **At least 2 different structural patterns across any 5-post window.**
+- **Reported scene as argument** — a sourced scene (event, ceremony, transcript) may carry the argument instead of analysis, but only when the scene IS the mechanism and every detail is sourced or `[reported]`. Introduced in #037 (the liturgy). Do not embellish for effect — #037's draft fabricated an "audiences weeping" detail that the source never said; the check against source caught it. That check is part of the mode.
 
 ### Metaphor Rotation
 No single metaphor should anchor more than **2 posts in a 10-post window**.
@@ -350,4 +351,4 @@ When a post connects to earlier work, **link it**. Build threads across posts. T
 
 ## Future
 
-*Last updated: 2026-08-08* (Post #035 prep: sourcing/verification discipline, tic audit, first-person anchor, persona pointer; GLM-5.3 added to model history mid-session #036 draft work)
+*Last updated: 2026-09-17* (Post #037: reported-scene-as-argument mode added to Structural Variety)
